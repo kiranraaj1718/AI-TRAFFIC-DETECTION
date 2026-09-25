@@ -1,6 +1,10 @@
 # TrafficEye – Intelligent Traffic Violation Detection System
 
+**Problem title:** AI-05: Intelligent Traffic Violation Detection
+
 ## Problem statement
+> Develop an AI-based prototype that analyzes traffic images or video frames to identify possible violations such as helmetless riding, seat-belt violations, or excessive vehicle occupancy. The system should detect the vehicle/person and display the identified violation.
+
 India records well over a lakh road deaths a year, and two-wheeler riders make up the largest share. Riding without a helmet and carrying more than one pillion ("triple riding") are among the most common offences, but enforcement still depends on officers watching roads or reviewing camera footage by hand. That doesn't scale to the number of junctions and cameras in an Indian city, so most violations go unrecorded.
 
 ## Proposed solution
@@ -196,9 +200,5 @@ Planned features, grouped by category.
 - Admin login and role-based access
 
 ## Team members
-| Name | Role |
-|---|---|
-| _Add name_ | Computer vision & violation engine |
-| _Add name_ | Backend API & database |
-| _Add name_ | Frontend & dashboard |
-| _Add name_ | Presentation & testing |
+- Gajavanan.R
+- Kiran Raaj G.L
