@@ -165,12 +165,35 @@ Every error:
 - Video merging is lightweight box matching, not a full multi-object tracker. It runs on CPU, so long or high-resolution videos take time.
 - Challans are demo documents and not legally valid.
 
-## Future scope
-- Seat-belt and red-light / stop-line violation detection
-- Live CCTV / RTSP stream processing with a proper tracker (e.g. ByteTrack)
-- SMS / e-mail challans to the registered owner through a vehicle-registration lookup
-- A fine-tuned plate detector ahead of OCR
-- GPU deployment and multi-camera dashboards
+## Future Scope
+Planned features, grouped by category.
+
+**AI Detection**
+- Mobile phone use while driving
+- Seat belt violation
+- Wrong-side driving
+- Red-light jumping
+- Stop-line violation
+- Overspeed detection
+- Fine-tuned number plate detector ahead of OCR
+
+**Monitoring**
+- Live CCTV / camera feed
+- GPU deployment with multi-camera dashboards
+
+**Review**
+- Officer approve / reject workflow with an audit log
+
+**Analytics**
+- Violation hotspot map
+- Peak violation time
+- Repeat offender detection
+
+**Alerts**
+- Email / SMS challan notification
+
+**Security**
+- Admin login and role-based access
 
 ## Team members
 | Name | Role |
