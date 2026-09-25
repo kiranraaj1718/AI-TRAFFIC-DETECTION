@@ -105,7 +105,7 @@ The first start downloads `yolov8n.pt` (about 6 MB) and the EasyOCR weights (abo
 ## Helmet model (optional)
 Helmet detection needs a YOLOv8 **detection** model with helmet / no-helmet classes at `backend/models/helmet.pt`. Without it the app runs normally and only skips the helmet check.
 
-Search [Hugging Face](https://huggingface.co/models?search=helmet) or [Roboflow Universe](https://universe.roboflow.com/search?q=helmet) for helmet / no-helmet models trained on motorcycle riders, and download the `.pt` weights. The team tested [`iam-tsr/yolov8n-helmet-detection`](https://huggingface.co/iam-tsr/yolov8n-helmet-detection) (MIT licence), a community model and not an official Ultralytics one:
+Search [Hugging Face](https://huggingface.co/models?search=helmet) or [Roboflow Universe](https://universe.roboflow.com/search?q=helmet) for helmet / no-helmet models trained on motorcycle riders, and download the `.pt` weights. The team tested [`iam-tsr/yolov8n-helmet-detection`](https://huggingface.co/iam-tsr/yolov8n-helmet-detection) (MIT licence), a community model and not an official Ultralytics one. This repository already includes it as `backend/models/helmet.pt`; its source and licence are in [`backend/models/HELMET_MODEL_NOTICE.md`](backend/models/HELMET_MODEL_NOTICE.md). To download it again:
 
 ```bash
 # Linux/macOS  (Windows PowerShell: use curl.exe and backend\models\helmet.pt)
