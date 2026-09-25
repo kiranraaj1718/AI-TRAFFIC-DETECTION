@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrafficEye – Intelligent Traffic Violation Detection</title>
+  <meta name="description" content="AI-powered traffic violation detection with YOLOv8, OCR and automatic e-challans." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f97316' stroke-width='2'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+            display: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body data-page="home" class="font-sans antialiased">
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header id="navbar"></header>
+
+  <main class="pt-16">
+    <!-- ================================================================ HERO -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-12 md:pt-24 md:pb-16 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-medium text-amber-300 fade-in">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
+        </span>
+        AI-powered traffic monitoring
+      </div>
+
+      <h1 class="font-display mt-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight fade-in" style="animation-delay: 80ms">
+        <span class="text-gradient">TrafficEye</span>
+      </h1>
+      <p class="font-display mt-3 text-xl sm:text-2xl font-medium text-slate-100 fade-in" style="animation-delay: 160ms">
+        Intelligent Traffic Violation Detection
+      </p>
+      <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-400 fade-in" style="animation-delay: 240ms">
+        Road safety enforcement cannot rely on officers watching every camera.
+        TrafficEye uses YOLOv8 computer vision to find vehicles and riders in traffic
+        footage, flag violations and produce annotated evidence in seconds.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3 fade-in" style="animation-delay: 320ms">
+        <button id="cta-image" type="button" class="btn-primary">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.16-5.16a2.25 2.25 0 0 1 3.18 0l5.16 5.16m-1.5-1.5 1.41-1.41a2.25 2.25 0 0 1 3.18 0l2.91 2.91M3.75 21h16.5A1.5 1.5 0 0 0 21.75 19.5V4.5A1.5 1.5 0 0 0 20.25 3H3.75A1.5 1.5 0 0 0 2.25 4.5v15A1.5 1.5 0 0 0 3.75 21Zm10.5-11.25h.008v.008h-.008V9.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+          </svg>
+          Analyze Image
+        </button>
+        <button id="cta-video" type="button" class="btn-primary">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/>
+          </svg>
+          Analyze Video
+        </button>
+        <a href="/docs" class="btn-ghost" target="_blank" rel="noopener">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>
+          </svg>
+          API Docs
+        </a>
+      </div>
+
+      <!-- How it works -->
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+        <div class="glass glow-border card-hover p-5 fade-in" style="animation-delay: 400ms">
+          <p class="font-display text-sm font-semibold text-amber-400">01 · Upload</p>
+          <p class="mt-2 text-sm text-slate-400">Drop a JPG or PNG frame from any traffic camera or phone.</p>
+        </div>
+        <div class="glass glow-border card-hover p-5 fade-in" style="animation-delay: 480ms">
+          <p class="font-display text-sm font-semibold text-orange-400">02 · Detect</p>
+          <p class="mt-2 text-sm text-slate-400">YOLOv8 finds vehicles and riders; rules flag triple riding and missing helmets.</p>
+        </div>
+        <div class="glass glow-border card-hover p-5 fade-in" style="animation-delay: 560ms">
+          <p class="font-display text-sm font-semibold text-red-400">03 · Evidence</p>
+          <p class="mt-2 text-sm text-slate-400">OCR reads the number plate and an annotated evidence image is saved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ UPLOAD -->
+    <section id="analyze" class="max-w-5xl mx-auto px-4 sm:px-6 pb-12 scroll-mt-24">
+      <div class="glass glow-border p-5 sm:p-8">
+        <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+          <div>
+            <h2 class="font-display text-2xl font-semibold text-white">Analyze a traffic image or video</h2>
+            <p class="text-sm text-slate-400 mt-1">JPG or PNG up to 10 MB · MP4 up to 50 MB and 30 seconds</p>
+          </div>
+        </div>
+
+        <!-- Drop zone -->
+        <div id="drop-zone" class="drop-zone flex flex-col items-center justify-center text-center px-6 py-14 sm:py-16"
+             role="button" tabindex="0" aria-label="Upload a traffic image">
+          <div class="drop-icon grid place-items-center w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-amber-500/20 ring-1 ring-amber-500/30">
+            <svg class="w-8 h-8 text-amber-400" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"/>
+            </svg>
+          </div>
+          <p class="mt-5 text-lg font-medium text-white">Drag &amp; drop a traffic image or video here</p>
+          <p class="mt-1 text-sm text-slate-400">or <span class="text-amber-400 font-medium underline underline-offset-4">browse</span> your files</p>
+          <p class="mt-4 text-xs text-slate-500">Supported: JPG, JPEG, PNG (max 10 MB) · MP4 (max 50 MB, 30 s)</p>
+        </div>
+        <input id="file-input" type="file" accept=".jpg,.jpeg,.png,.mp4,image/jpeg,image/png,video/mp4" class="hidden" />
+
+        <!-- Preview + processing -->
+        <div id="preview-panel" class="hidden">
+          <div class="grid md:grid-cols-5 gap-6 items-center">
+            <div class="md:col-span-3 relative rounded-xl overflow-hidden bg-black/40 ring-1 ring-white/10">
+              <img id="preview-image" class="w-full max-h-[420px] object-contain" alt="Selected image preview" />
+              <video id="preview-video" class="hidden w-full max-h-[420px]" controls muted playsinline></video>
+              <div id="scan-overlay" class="scan-overlay hidden"></div>
+            </div>
+
+            <div class="md:col-span-2 space-y-5">
+              <div>
+                <p class="text-xs uppercase tracking-widest text-slate-500">Selected file</p>
+                <p id="file-name" class="mt-1 font-medium text-white break-all"></p>
+                <p id="file-meta" class="text-sm text-slate-400"></p>
+              </div>
+
+              <div id="processing" class="hidden rounded-xl bg-slate-950/50 ring-1 ring-amber-500/20 p-4" aria-live="polite">
+                <div class="flex items-center gap-4">
+                  <div class="spinner"></div>
+                  <div class="min-w-0">
+                    <p id="step-text" class="step-text font-medium text-amber-300">Analyzing traffic...</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Running on the TrafficEye server</p>
+                  </div>
+                </div>
+                <div id="step-dots" class="mt-4 flex gap-2"></div>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <button id="analyze-btn" type="button" class="btn-primary flex-1 min-w-[10rem]">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/>
+                  </svg>
+                  Analyze
+                </button>
+                <button id="change-btn" type="button" class="btn-ghost">Choose another</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ RESULTS -->
+    <section id="results" class="hidden max-w-7xl mx-auto px-4 sm:px-6 pb-20 scroll-mt-24">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-5">
+        <div>
+          <p class="text-xs uppercase tracking-widest text-amber-400/80">Analysis result</p>
+          <h2 id="result-title" class="font-display text-2xl sm:text-3xl font-semibold text-white"></h2>
+        </div>
+        <p id="result-meta" class="text-sm text-slate-400"></p>
+      </div>
+
+      <div id="helmet-warning" class="hidden warning-banner flex items-start gap-3 p-4 mb-5">
+        <svg class="w-5 h-5 mt-0.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+        </svg>
+        <div>
+          <p id="helmet-warning-title" class="font-semibold text-amber-200">Helmet model not loaded — helmet check skipped</p>
+          <p id="helmet-warning-text" class="text-sm text-amber-100/70">Place a YOLOv8 helmet model at <code class="text-amber-200">backend/models/helmet.pt</code> and restart the server to enable no-helmet detection.</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-6">
+        <!-- Annotated evidence -->
+        <div class="lg:col-span-3 glass p-3 sm:p-4 fade-in">
+          <a id="evidence-link" href="#" target="_blank" rel="noopener" class="block rounded-xl overflow-hidden bg-black/40 ring-1 ring-white/10">
+            <img id="result-image" class="w-full" alt="Annotated evidence image" />
+          </a>
+          <div id="no-evidence" class="hidden rounded-xl bg-black/30 ring-1 ring-white/10 px-6 py-16 text-center text-sm text-slate-400"></div>
+          <div class="mt-3 px-1 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+            <span class="flex items-center gap-3">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-green-500"></span>Normal</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-red-500"></span>Violation</span>
+            </span>
+            <a id="evidence-open" href="#" target="_blank" rel="noopener" class="text-amber-400 hover:text-amber-300">Open full size ↗</a>
+          </div>
+        </div>
+
+        <!-- Summary + details -->
+        <div class="lg:col-span-2 space-y-5">
+          <div class="grid grid-cols-3 gap-3 fade-in">
+            <div class="stat-tile">
+              <p class="text-xs text-slate-400">Violations</p>
+              <p id="stat-violations" class="font-display text-2xl font-bold mt-1">0</p>
+            </div>
+            <div class="stat-tile">
+              <p id="stat-objects-label" class="text-xs text-slate-400">Objects</p>
+              <p id="stat-objects" class="font-display text-2xl font-bold mt-1 text-white">0</p>
+            </div>
+            <div class="stat-tile">
+              <p class="text-xs text-slate-400">Time</p>
+              <p id="stat-time" class="font-display text-2xl font-bold mt-1 text-white">0s</p>
+            </div>
+          </div>
+
+          <div id="violations-panel" class="space-y-4"></div>
+
+          <div id="motorcycles-card" class="glass p-5 fade-in">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="font-display font-semibold text-white">Motorcycles &amp; riders</h3>
+              <span class="text-[11px] text-slate-500">helmet status per rider</span>
+            </div>
+            <div id="motorcycles-panel" class="mt-3 space-y-3"></div>
+          </div>
+
+          <div id="detections-card" class="glass p-5 fade-in">
+            <h3 class="font-display font-semibold text-white">Detected objects</h3>
+            <div id="class-chips" class="mt-3 flex flex-wrap gap-2"></div>
+            <ul id="detection-list" class="mt-4 max-h-72 overflow-y-auto scroll-thin space-y-2 pr-1"></ul>
+          </div>
+
+          <button id="new-analysis-btn" type="button" class="btn-ghost w-full">Analyze another file</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-8 text-center text-xs text-slate-500">
+    TrafficEye · Intelligent Traffic Violation Detection · Hackathon prototype
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

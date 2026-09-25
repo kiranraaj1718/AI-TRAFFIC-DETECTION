@@ -1,0 +1,23 @@
+# TrafficEye – Python dependencies (Python 3.11+)
+# Install with:  pip install -r requirements.txt
+# PyTorch is pulled in automatically by ultralytics/easyocr (CPU build by default).
+# For an NVIDIA GPU, install the CUDA build of torch first from https://pytorch.org.
+
+# --- Web API ---------------------------------------------------------------
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+pydantic>=2.7.0
+
+# --- Database --------------------------------------------------------------
+sqlalchemy>=2.0.30
+
+# --- AI / Computer Vision --------------------------------------------------
+ultralytics>=8.3.0
+opencv-python>=4.10.0
+easyocr>=1.7.1
+numpy>=1.26.0
+pillow>=10.3.0
+
+# --- PDF e-challans --------------------------------------------------------
+reportlab>=4.2.0
